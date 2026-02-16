@@ -6,18 +6,27 @@ export const maxDuration = 30;
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
+    console.log("🟢 Incoming messages:", messages);
 
-    console.log("🔵 Chat API - Messages:", messages);
+    const modelMessages = messages.map((msg: any) => ({
+      role: msg.role,
+      content: (msg.parts || [])
+        .filter((p: any) => p.type === "text")
+        .map((p: any) => p.text)
+        .join(""),
+    }));
+    console.log("🟡 Converted to ModelMessages:", modelMessages);
 
     const result = streamText({
       model: openai("gpt-4o-mini"),
-      messages,
+      messages: modelMessages,
       system: "You are a helpful travel assistant.",
     });
+    console.log("🟠 streamText result:", result);
 
-    console.log("✅ Returning data stream");
-
-    return result.toDataStreamResponse();
+    return result.toUIMessageStreamResponse({
+      originalMessages: messages,
+    });
   } catch (error) {
     console.error("❌ Error:", error);
     return new Response(JSON.stringify({ error: String(error) }), {
