@@ -6,6 +6,10 @@ export default function Header() {
       <nav className="flex gap-6">
         <Link href="/">Chat (useChat)</Link>
         <Link href="/streaming">Streaming Example</Link>
+        <Link href="/people">People Generator</Link>
+        <Link href="/stream-component">Stream Component</Link>
+        <Link href="/button-demo">Button Demo</Link>
+        <Link href="/places">Paris Places</Link>
       </nav>
     </header>
   );
