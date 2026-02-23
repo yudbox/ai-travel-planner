@@ -10,6 +10,9 @@ export default function Header() {
         <Link href="/stream-component">Stream Component</Link>
         <Link href="/button-demo">Button Demo</Link>
         <Link href="/places">Paris Places</Link>
+        <Link href="/learning" className="font-semibold">
+          📚 Learning
+        </Link>
       </nav>
     </header>
   );

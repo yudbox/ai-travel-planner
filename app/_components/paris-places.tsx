@@ -1,4 +1,4 @@
-import { PlaceCard } from "@/app/components/place-card";
+import { PlaceCard } from "@/app/_components/place-card";
 
 const places = [
   {

@@ -1,4 +1,4 @@
-import { ParisPlaces } from "@/app/components/paris-places";
+import { ParisPlaces } from "@/app/_components/paris-places";
 
 export default function PlacesPage() {
   return (

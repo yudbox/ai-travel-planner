@@ -7,7 +7,7 @@ import { streamText, streamObject, generateObject } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { createStreamableValue } from "@ai-sdk/rsc";
 import { streamUI } from "@ai-sdk/rsc";
-import { MarkdownContent } from "./components/MarkdownContent";
+import { MarkdownContent } from "./_components/MarkdownContent";
 import { z } from "zod";
 
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";

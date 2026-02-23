@@ -1,4 +1,4 @@
-import { GetComponentButton } from "@/app/components/GetComponentButton";
+import { GetComponentButton } from "@/app/_components/GetComponentButton";
 
 export default function ButtonDemoPage() {
   return (
