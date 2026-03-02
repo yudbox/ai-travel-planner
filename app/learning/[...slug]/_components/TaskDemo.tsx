@@ -13,6 +13,7 @@ import { ErrorDisplay } from "./TaskDemo/ErrorDisplay";
 import { Task6TokenLimits } from "./Task6TokenLimits";
 import { Task7ImageGeneration } from "./Task7ImageGeneration";
 import { Task9VoiceAssistant } from "./Task9VoiceAssistant";
+import { TravelExperiences } from "./TravelExperiences";
 
 interface TaskDemoProps {
   config: TaskConfig;
@@ -21,6 +22,11 @@ interface TaskDemoProps {
 
 export function TaskDemo({ config, slug }: TaskDemoProps) {
   const state = useTaskDemo({ config, slug });
+
+  // Special rendering for Module 2 Task 1 (Travel Experiences)
+  if (config.module === "module2" && config.task === "task1") {
+    return <TravelExperiences />;
+  }
 
   // Special rendering for Task 6 (Token Limits)
   if (config.task === "task6") {

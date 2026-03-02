@@ -92,20 +92,18 @@ export default function LearningPage() {
               Module 2: Embeddings & Vector Databases 🤖
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Learn about embeddings, Pinecone, and semantic search.
+              Learn about embeddings, Pinecone, and semantic search through a
+              practical Travel Experiences app.
             </p>
             <ul className="space-y-2">
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 1: Introduction to Embeddings (Coming soon)
-              </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 2: Pinecone Setup (Coming soon)
-              </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 3: Semantic Search (Coming soon)
-              </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 4: Vector Storage (Coming soon)
+              <li>
+                <Link
+                  href="/learning/module2/task1"
+                  className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-2"
+                >
+                  ✅ Task 1: Travel Experiences Memory Bank (Embeddings +
+                  Search)
+                </Link>
               </li>
             </ul>
           </div>

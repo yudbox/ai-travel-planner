@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ButtonGroup } from "@/components/ui/button-group";
 
 type Voice = "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
 type Language = "auto" | "en" | "ru" | "uk";
@@ -325,46 +326,28 @@ export function Task9VoiceAssistant() {
           {/* Settings */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Voice Selection */}
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                AI Voice:
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {VOICES.map((voice) => (
-                  <Badge
-                    key={voice.value}
-                    variant={
-                      selectedVoice === voice.value ? "default" : "outline"
-                    }
-                    className="cursor-pointer"
-                    onClick={() => setSelectedVoice(voice.value)}
-                  >
-                    {voice.emoji} {voice.label}
-                  </Badge>
-                ))}
-              </div>
-            </div>
+            <ButtonGroup
+              label="AI Voice:"
+              options={VOICES.map((voice) => ({
+                value: voice.value,
+                label: `${voice.emoji} ${voice.label}`,
+              }))}
+              value={[selectedVoice]}
+              onChange={(values) => setSelectedVoice(values[0] as Voice)}
+              multiSelect={false}
+            />
 
             {/* Language Selection */}
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Your Language:
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {LANGUAGES.map((lang) => (
-                  <Badge
-                    key={lang.value}
-                    variant={
-                      selectedLanguage === lang.value ? "default" : "outline"
-                    }
-                    className="cursor-pointer"
-                    onClick={() => setSelectedLanguage(lang.value)}
-                  >
-                    {lang.emoji} {lang.label}
-                  </Badge>
-                ))}
-              </div>
-            </div>
+            <ButtonGroup
+              label="Your Language:"
+              options={LANGUAGES.map((lang) => ({
+                value: lang.value,
+                label: `${lang.emoji} ${lang.label}`,
+              }))}
+              value={[selectedLanguage]}
+              onChange={(values) => setSelectedLanguage(values[0] as Language)}
+              multiSelect={false}
+            />
           </div>
 
           {/* Record Button */}

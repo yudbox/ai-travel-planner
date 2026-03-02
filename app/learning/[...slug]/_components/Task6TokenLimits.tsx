@@ -153,16 +153,17 @@ export function Task6TokenLimits() {
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {strategies.map((strategy) => (
-              <button
+              <Button
                 key={strategy.id}
+                variant="outline"
                 onClick={() => setActiveStrategy(strategy.id)}
-                className={`p-4 rounded-lg border-2 text-left transition-all ${
+                className={`h-auto p-4 text-left flex-col items-start ${
                   activeStrategy === strategy.id
                     ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
-                    : "border-gray-200 dark:border-gray-700 hover:border-gray-300"
+                    : "hover:border-gray-300"
                 }`}
               >
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-2 w-full">
                   <span className="text-2xl">{strategy.emoji}</span>
                   {activeStrategy === strategy.id && (
                     <Badge variant="default">Active</Badge>
@@ -172,7 +173,7 @@ export function Task6TokenLimits() {
                 <p className="text-xs text-gray-600 dark:text-gray-400">
                   {strategy.description}
                 </p>
-              </button>
+              </Button>
             ))}
           </div>
         </CardContent>

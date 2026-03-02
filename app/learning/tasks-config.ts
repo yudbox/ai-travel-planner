@@ -461,6 +461,167 @@ export const tasksConfig: Record<string, TaskConfig> = {
       },
     ],
   },
+  "module2-task1": {
+    module: "module2",
+    moduleTitle: "Embeddings & Vector Databases 🤖",
+    task: "task1",
+    title: "Travel Experiences Memory Bank",
+    description:
+      "Build a complete system to save and search travel experiences using embeddings and Pinecone vector database. Learn semantic search, metadata filtering, and vector storage patterns.",
+    objectives: [
+      "Save travel experiences to Pinecone with embeddings and metadata",
+      "Perform semantic search to find experiences by meaning, not just keywords",
+      "Use metadata filters (location, emotion, budget) to refine results",
+      "Understand namespaces for organizing different experience categories",
+      "See how vector similarity scores reflect relevance",
+    ],
+    defaultPrompt: "",
+    hasParameters: false,
+    isChatMode: false,
+    hasContext: false,
+    explanation: [
+      {
+        step: "Add Experience Flow",
+        description:
+          "User fills form with description (e.g., 'Watched sunset from Santorini cliff, felt peaceful'). Backend generates 1536-dim embedding from description using OpenAI text-embedding-3-small. Saves to Pinecone with namespace (category) and metadata (location, emotion, budget).",
+      },
+      {
+        step: "Semantic Search Magic",
+        description:
+          "User searches 'relaxing moments' → generates query vector → Pinecone finds similar experiences even if they used words like 'peaceful', 'calm', 'serene'. This is semantic search - finding by meaning, not keywords!",
+      },
+      {
+        step: "Metadata Filtering",
+        description:
+          "Combine semantic search with filters: 'romantic experiences' + filter: {budget: 'low', location: 'Paris'}. Pinecone first filters by metadata, then ranks by vector similarity. Best of both worlds!",
+      },
+      {
+        step: "Namespaces for Organization",
+        description:
+          "Namespaces separate data logically: 'nature', 'food', 'culture', 'adventure'. Query specific namespaces or search across all. Keeps your vector database organized and queries fast.",
+      },
+      {
+        step: "Similarity Scores",
+        description:
+          "Each result has score 0-1: >0.8 = highly relevant, 0.6-0.8 = related, <0.6 = loosely connected. Scores help understand match quality and filter low-relevance results.",
+      },
+    ],
+    nextTask: "module3/task1",
+  },
+  "module2-task2": {
+    module: "module2",
+    moduleTitle: "Embeddings & Vector Databases 🤖",
+    task: "task2",
+    title: "Настройка Pinecone",
+    description:
+      "Научитесь работать с Pinecone - vector database для хранения и поиска embeddings.",
+    objectives: [
+      "Создать индекс в Pinecone",
+      "Понять структуру vector: id, values, metadata",
+      "Загрузить (upsert) embeddings в Pinecone",
+      "Выполнить базовый query для поиска похожих векторов",
+    ],
+    defaultPrompt: "",
+    explanation: [
+      {
+        step: "Что такое Pinecone?",
+        description:
+          "Pinecone - это managed vector database для хранения миллионов embeddings и быстрого similarity search. Альтернативы: pgVector, Weaviate, Qdrant.",
+      },
+      {
+        step: "Index (Индекс)",
+        description:
+          "Index - это пространство для хранения векторов. Создается с параметрами: dimension (1536 для text-embedding-3-small), metric (cosine/euclidean/dotproduct). Один индекс = один namespace.",
+      },
+      {
+        step: "Upsert (Загрузка)",
+        description:
+          "Upsert = insert or update. Загружаем массив векторов: [{ id: 'doc1', values: [0.2, -0.5, ...], metadata: { text: 'original text', category: 'products' } }]. Metadata используется для фильтрации.",
+      },
+      {
+        step: "Query (Поиск)",
+        description:
+          "Query ищет Top-K похожих векторов. Передаем vector запроса → получаем массив matches с score (0-1). Score > 0.8 = очень похоже, 0.5-0.8 = релевантно, < 0.5 = слабая связь.",
+      },
+    ],
+    nextTask: "module2/task3",
+  },
+  "module2-task3": {
+    module: "module2",
+    moduleTitle: "Embeddings & Vector Databases 🤖",
+    task: "task3",
+    title: "Semantic Search",
+    description:
+      "Реализуйте поиск по смыслу (semantic search) используя embeddings и Pinecone.",
+    objectives: [
+      "Понять разницу между keyword search и semantic search",
+      "Реализовать полный цикл: текст → embedding → query → результаты",
+      "Использовать metadata filtering для уточнения поиска",
+      "Сравнить качество результатов с традиционным поиском",
+    ],
+    defaultPrompt: "Найти информацию о здоровом питании",
+    explanation: [
+      {
+        step: "Keyword Search (старый подход)",
+        description:
+          "Ищет точное совпадение слов: запрос 'buy shoes' найдет только документы со словами 'buy' и 'shoes'. Не понимает синонимы ('purchase sneakers' не найдется).",
+      },
+      {
+        step: "Semantic Search (AI подход)",
+        description:
+          "Понимает смысл: 'buy shoes' найдет 'purchase sneakers', 'get footwear', 'order running shoes'. Embedding векторы захватывают meaning, не просто keywords.",
+      },
+      {
+        step: "Pipeline",
+        description:
+          "1) User query → 2) Generate embedding → 3) Query Pinecone → 4) Get Top-K matches → 5) Return original texts. Весь процесс ~50-200ms.",
+      },
+      {
+        step: "Metadata Filtering",
+        description:
+          "Уточняем поиск: query + filter: { category: 'products', price: { $lte: 100 } }. Сначала фильтр по metadata, потом similarity search. Комбинирует structured + semantic search.",
+      },
+    ],
+    nextTask: "module2/task4",
+  },
+  "module2-task4": {
+    module: "module2",
+    moduleTitle: "Embeddings & Vector Databases 🤖",
+    task: "task4",
+    title: "Vector Storage Patterns",
+    description:
+      "Изучите продвинутые паттерны работы с vector databases: chunking, namespaces, hybrid search.",
+    objectives: [
+      "Понять chunking strategies для больших документов",
+      "Использовать namespaces для разделения данных",
+      "Реализовать hybrid search (semantic + keyword)",
+      "Оптимизировать performance и стоимость",
+    ],
+    defaultPrompt: "",
+    explanation: [
+      {
+        step: "Chunking (Разбивка на части)",
+        description:
+          "Большой документ (10K tokens) разбиваем на chunks по 500 tokens. Каждый chunk = отдельный embedding. При поиске находим релевантные chunks, не весь документ. Overlap 50-100 tokens между chunks для контекста.",
+      },
+      {
+        step: "Namespaces",
+        description:
+          "Разделяем данные логически: namespace 'products', namespace 'documentation', namespace 'support-tickets'. Query только в нужном namespace. Экономия: не ищем в 10M векторов, а только в 100K релевантных.",
+      },
+      {
+        step: "Hybrid Search",
+        description:
+          "Комбинируем semantic search (embeddings) + keyword search (full-text). Пример: 'iPhone 15' → semantic находит похожие телефоны, keyword фильтрует именно iPhone. Best of both worlds!",
+      },
+      {
+        step: "Cost Optimization",
+        description:
+          "Генерация embeddings стоит денег ($0.02 per 1M tokens). Оптимизируй: кешируй embeddings в Redis, используй batch операции (1000 за раз), выбирай small model где достаточно.",
+      },
+    ],
+    nextTask: "module3/task1",
+  },
 };
 
 export function getTaskConfig(module: string, task: string): TaskConfig | null {
