@@ -622,6 +622,96 @@ export const tasksConfig: Record<string, TaskConfig> = {
     ],
     nextTask: "module3/task1",
   },
+  "module3-task1": {
+    module: "module3",
+    moduleTitle: "Building with LangChain 📊",
+    task: "task1",
+    title: "AI Travel Assistant (Multi-Personality Chat)",
+    description:
+      "Build an intelligent travel assistant with 4 different AI personalities that remember conversation history across mode switches. Learn Prompt Template Pattern, History Pattern, and Chain Pattern in action.",
+    objectives: [
+      "Master Prompt Template Pattern - switch between 4 AI personalities (Travel Guide, Budget Advisor, Adventure Planner, Food Expert)",
+      "Implement History Pattern - conversation memory persists across personality switches",
+      "Visualize Chain Pattern - see how prompt → model → parser pipeline works",
+      "Experience mid-conversation role switching - AI adapts while remembering context",
+      "Export chat history and clear conversation",
+    ],
+    defaultPrompt: "I want to visit Paris for a week",
+    hasParameters: false,
+    isChatMode: false,
+    hasContext: false,
+    explanation: [
+      {
+        step: "Prompt Template Pattern",
+        description:
+          "Each AI mode has a unique system message that defines its personality. Travel Guide provides detailed descriptions, Budget Advisor focuses on prices, Adventure Planner suggests thrilling activities, Food Expert shares culinary insights. Switch modes to see how the same question gets different answers!",
+      },
+      {
+        step: "History Pattern (RunnableWithMessageHistory)",
+        description:
+          "LangChain's RunnableWithMessageHistory automatically saves every user message and AI response. When you switch from Travel Guide to Budget Advisor, the new personality remembers everything discussed before - no manual history management needed!",
+      },
+      {
+        step: "Chain Pattern Visualization",
+        description:
+          "See the data flow: Selected Mode → ChatPromptTemplate (adds system role) → ChatGPT (generates response) → StringOutputParser (extracts text) → Display. Each step transforms data for the next one, like a factory assembly line.",
+      },
+      {
+        step: "Mid-Conversation Switching",
+        description:
+          "The magic: Ask Travel Guide about Paris, then switch to Budget Advisor and ask 'How much will it cost?' - Budget mode will reference Paris from the previous conversation! This shows how prompt templates + history work together.",
+      },
+    ],
+    nextTask: "module3/task2",
+  },
+  "module3-task2": {
+    module: "module3",
+    moduleTitle: "Building with LangChain 📊",
+    task: "task2",
+    title: "Smart Travel RAG Advisor",
+    description:
+      "Build a production-ready RAG (Retrieval-Augmented Generation) system that searches real travel experiences from Pinecone and generates personalized recommendations. See the complete RAG pipeline in real-time!",
+    objectives: [
+      "Master RAG Pattern - Retrieval → Augmented → Generation pipeline",
+      "Semantic search in Pinecone - find experiences by meaning, not keywords",
+      "Real-time RAG visualization - watch each step execute (Retrieval → Augmentation → Generation)",
+      "Metadata filtering - combine semantic search with budget/emotion/location filters",
+      "Score interpretation - understand why certain experiences are relevant (cosine similarity)",
+      "Use real Module 2 data - search through travel experiences you saved earlier",
+    ],
+    defaultPrompt: "romantic places in Paris",
+    hasParameters: false,
+    isChatMode: false,
+    hasContext: false,
+    explanation: [
+      {
+        step: "🔍 RETRIEVAL Phase",
+        description:
+          "User query 'romantic places in Paris' → Generate embedding vector (1536 dimensions) → Search Pinecone for similar experience vectors → Apply metadata filters (budget, emotion, location) → Return top 3-5 most relevant experiences with similarity scores (0-1). This takes ~300-500ms.",
+      },
+      {
+        step: "🔗 AUGMENTED Phase",
+        description:
+          "Take the found experiences and inject them into ChatGPT prompt as context. Build messages array: [system: 'You are travel advisor', context: 'Found experiences: ...', user: 'romantic places in Paris']. This is why RAG is 'Augmented' - we augment the prompt with retrieved data!",
+      },
+      {
+        step: "✨ GENERATION Phase",
+        description:
+          "ChatGPT receives the prompt WITH context and generates response based on REAL traveler experiences, not just training data. Response mentions specific details from found experiences (e.g., 'Watch sunset from Trocadéro' with score 0.89). This takes ~1-2s.",
+      },
+      {
+        step: "Metadata Filtering Deep Dive",
+        description:
+          "Combine semantic + structured search: Find experiences semantically similar to 'peaceful moments' AND filter by {budget: 'low', emotion: 'relaxed', location: 'Bali'}. Pinecone filters BEFORE similarity search for efficiency - searches only within filtered subset!",
+      },
+      {
+        step: "Score Interpretation",
+        description:
+          "Similarity scores explained: >0.85 = highly relevant (almost identical meaning), 0.7-0.85 = related (similar topic), 0.5-0.7 = loosely connected, <0.5 = different topic. Scores use cosine similarity in 1536-dimensional vector space.",
+      },
+    ],
+    nextTask: undefined,
+  },
 };
 
 export function getTaskConfig(module: string, task: string): TaskConfig | null {
