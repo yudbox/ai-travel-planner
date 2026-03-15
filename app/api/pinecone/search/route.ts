@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       apiKey: process.env.PINECONE_API_KEY || "",
     });
 
-    const index = pinecone.Index("module2-embeddings");
+    const index = pinecone.Index({ name: process.env.PINECONE_INDEX_NAME! });
 
     // Search across selected categories (namespaces)
     console.log("🔎 Searching in namespaces:", categories);

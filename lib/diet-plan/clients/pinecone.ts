@@ -19,13 +19,16 @@ export function getPineconeClient(): Pinecone {
  */
 export function getDietPlanIndex() {
   const pc = getPineconeClient();
-  const indexName = process.env.PINECONE_INDEX || "module2-embeddings";
-  return pc.Index(indexName);
+  const indexName = process.env.PINECONE_INDEX;
+  if (!indexName) {
+    throw new Error("Provide indexName");
+  }
+  return pc.Index({ name: indexName });
 }
 
 /**
  * Get namespace for diet plans
  */
 export function getDietPlanNamespace(): string {
-  return process.env.PINECONE_NAMESPACE || "module4_diet_plans";
+  return process.env.PINECONE_NAMESPACE ?? "";
 }
