@@ -32,7 +32,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error:
-            "PINECONE_INDEX_NAME is not configured. Please add it to your .env file (e.g., module2-embeddings)",
+            "PINECONE_INDEX_NAME is not configured. Please add it to your .env file",
         },
         { status: 500 },
       );
@@ -49,7 +49,9 @@ export async function POST(request: Request) {
     const pinecone = new Pinecone({
       apiKey: process.env.PINECONE_API_KEY!,
     });
-    const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX_NAME!);
+    const pineconeIndex = pinecone.Index({
+      name: process.env.PINECONE_INDEX_NAME!,
+    });
 
     // Initialize embeddings model
     const embeddings = new OpenAIEmbeddings({

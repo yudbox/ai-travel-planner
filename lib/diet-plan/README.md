@@ -94,7 +94,7 @@ SPOONACULAR_API_KEY=2638aa9feb814863b7b8891857173133
 
 # Pinecone
 PINECONE_API_KEY=pcsk_7JFXvr...
-PINECONE_INDEX=module2-embeddings
+PINECONE_INDEX=
 PINECONE_NAMESPACE=module4_diet_plans
 ```
 
@@ -267,7 +267,7 @@ DietPlanState {
 from pinecone import Pinecone
 
 pc = Pinecone(api_key="...")
-index = pc.Index("module2-embeddings")
+index = pc.Index("index_name")
 stats = index.describe_index_stats()
 print(stats.namespaces["module4_diet_plans"])  # Should show record count
 ```

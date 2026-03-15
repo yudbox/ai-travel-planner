@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       apiKey: process.env.PINECONE_API_KEY || "",
     });
 
-    const index = pinecone.Index("module2-embeddings");
+    const index = pinecone.Index({ name: process.env.PINECONE_INDEX_NAME! });
 
     // Generate unique ID
     const id = `experience-${category}-${Date.now()}`;
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     console.log("📌 Upserting to Pinecone:", {
       id,
       namespace: category,
-      index: "module2-embeddings",
+      index: process.env.PINECONE_INDEX_NAME,
       vectorDimensions: embedding.length,
     });
 
