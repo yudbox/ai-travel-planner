@@ -114,20 +114,25 @@ export default function LearningPage() {
               Module 3: Building with LangChain 📊
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Learn RAG (Retrieval-Augmented Generation) and LangChain.
+              Learn Prompt Templates, History Pattern, Chain Pattern, and RAG
+              (Retrieval-Augmented Generation) with LangChain.
             </p>
             <ul className="space-y-2">
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 1: LangChain Basics (Coming soon)
+              <li>
+                <Link
+                  href="/learning/module3/task1"
+                  className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-2"
+                >
+                  ✅ Task 1: AI Travel Assistant (Multi-Personality Chat)
+                </Link>
               </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 2: RAG Implementation (Coming soon)
-              </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 3: Context Injection (Coming soon)
-              </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 4: Full RAG App (Coming soon)
+              <li>
+                <Link
+                  href="/learning/module3/task2"
+                  className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-2"
+                >
+                  ✅ Task 2: Smart Travel RAG Advisor
+                </Link>
               </li>
             </ul>
           </div>
@@ -135,23 +140,20 @@ export default function LearningPage() {
           {/* Module 4 */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-              Module 4: AI Agents with LangGraph 🛠️
+              Module 4: LangGraph Multi-Agent System 🛠️
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Learn to build intelligent AI agents with state management.
+              Build a production-ready Diet Plan Agent with StateGraph, ReAct
+              pattern, Spoonacular API integration, and Pinecone memory system.
             </p>
             <ul className="space-y-2">
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 1: Agent Architecture (Coming soon)
-              </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 2: State Management (Coming soon)
-              </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 3: Multi-turn Agents (Coming soon)
-              </li>
-              <li className="text-gray-400 dark:text-gray-600">
-                🔒 Task 4: Production Agent (Coming soon)
+              <li>
+                <Link
+                  href="/learning/module4/diet-plan-agent"
+                  className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-2"
+                >
+                  ✅ Diet Plan Agent - Multi-step workflow with RAG + Recipe API
+                </Link>
               </li>
             </ul>
           </div>

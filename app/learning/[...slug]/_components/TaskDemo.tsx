@@ -14,6 +14,8 @@ import { Task6TokenLimits } from "./Task6TokenLimits";
 import { Task7ImageGeneration } from "./Task7ImageGeneration";
 import { Task9VoiceAssistant } from "./Task9VoiceAssistant";
 import { TravelExperiences } from "./TravelExperiences";
+import { MultiPersonalityChat } from "./MultiPersonalityChat";
+import { SmartRAGAdvisor } from "./SmartRAGAdvisor";
 
 interface TaskDemoProps {
   config: TaskConfig;
@@ -26,6 +28,16 @@ export function TaskDemo({ config, slug }: TaskDemoProps) {
   // Special rendering for Module 2 Task 1 (Travel Experiences)
   if (config.module === "module2" && config.task === "task1") {
     return <TravelExperiences />;
+  }
+
+  // Special rendering for Module 3 Task 1 (Multi-Personality Chat)
+  if (config.module === "module3" && config.task === "task1") {
+    return <MultiPersonalityChat />;
+  }
+
+  // Special rendering for Module 3 Task 2 (Smart RAG Advisor)
+  if (config.module === "module3" && config.task === "task2") {
+    return <SmartRAGAdvisor />;
   }
 
   // Special rendering for Task 6 (Token Limits)
